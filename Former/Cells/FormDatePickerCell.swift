@@ -23,6 +23,11 @@ open class FormDatePickerCell: FormCell, DatePickerFormableRow {
         
         let datePicker = UIDatePicker()
         datePicker.translatesAutoresizingMaskIntoConstraints = false
+        // 2-25-2020: Larry added this workaround to force the old style of date picker:
+        if #available(iOS 13.4, *) {
+            datePicker.preferredDatePickerStyle = .wheels
+        }
+
         contentView.insertSubview(datePicker, at: 0)
         self.datePicker = datePicker
         
