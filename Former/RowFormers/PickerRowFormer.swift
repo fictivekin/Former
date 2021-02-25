@@ -63,8 +63,11 @@ open class PickerRowFormer<T: UITableViewCell, S>
         super.update()
         cell.selectionStyle = .none
         
-        // UPDATES SELECTED ROW TO 0, IN CASE THE COUNT OF UPDATED PICKER ITEMS ARRAY IS LESS THAN PRIOR ARRAY
-        self.selectedRow = 0
+        // Sets selected row to 0 to avoid 'index out of range' error. This is in case the updated picker items array count
+        // is less than the prior array count.
+        if pickerItems.count <= selectedRow {
+            selectedRow = 0
+        }
         
         // RELOADS PICKER VIEW TO UPDATE ITEMS IN INLINE PICKER
         let picker = cell.formPickerView()
